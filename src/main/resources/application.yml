@@ -1,6 +1,6 @@
 
 server:
-  port: 8080
+  port: 8084
 
 camel:
   springboot:
@@ -10,12 +10,13 @@ camel:
 spring:
   application:
     name: rest-service
-#  jpa:
-#    hibernate.ddl-auto: update
-#    properties:
-#      hibernate.temp.use_jdbc_metadata_defaults: true
-#  datasource:
-#    url: ${DB_SERVER:jdbc:postgresql://localhost:5432/camel3db?useTimezone=true&serverTimezone=Africa/Lagos}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: true
+  datasource:
+#    url: ${DB_SERVER:jdbc:postgresql://localhost:5432/cataloguedb?useTimezone=true&serverTimezone=Africa/Lagos}
 #    username: ${DB_USER:postgres}
 #    password: ${DB_PASS:root}
 #    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
@@ -23,9 +24,12 @@ spring:
 route:
   book:
     findAllBooks: direct:findAllBooks
-    findBookByName: direct:findBookByName
-    removeBook: direct:removeBook
+    findBookById: direct:findBookById
+    findBookByTitle: direct:findBookByTitle
+    findBookByAuthor: direct:findBookByAuthor
+    findBookByIsbn: direct:findBookByIsbn
     saveBook: direct:saveBook
+    removeBook: direct:removeBook
 
   movie:
     findAllMovies: direct:findAllMovies
