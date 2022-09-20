@@ -16,7 +16,7 @@ public class MovieRoute extends RouteBuilder {
         from("{{route.movie.findAllMovies}}")
                 .bean(MovieService.class, "findAllMovies");
 
-        from("{{route.book.findMovieById}}")
+        from("{{route.movie.findMovieById}}")
                 .log("Received header : ${header.id}")
                 .bean(MovieService.class, "findMovieById(${header.id})");
 
