@@ -1,21 +1,18 @@
 package com.eze.catalogue.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Movie {
+public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
     private String name;
-    private String language;
+    @Enumerated(EnumType.STRING)
+    private LanguageEnum language;
     private String type;
     private String description;
     private double hours;
@@ -37,11 +34,11 @@ public class Movie {
         this.name = name;
     }
 
-    public String getLanguage() {
+    public LanguageEnum getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(LanguageEnum language) {
         this.language = language;
     }
 
@@ -82,7 +79,7 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", language='" + language + '\'' +
+                ", language=" + language +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", hours=" + hours +

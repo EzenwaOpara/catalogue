@@ -1,50 +1,22 @@
 package com.eze.catalogue.service;
 
 import com.eze.catalogue.domain.Book;
-import com.eze.catalogue.repository.BookRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class BookService {
+public interface BookService {
 
-    private final BookRepository bookRepository;
+    List<Book> findAllBooks();
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    Book findBookById(Long id);
 
-    private List<Book> findAllBooks() {
-        return bookRepository.findAll();
-    }
+    Book findBookByTitle(String title);
 
-    private Book findBookById(Long id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        return optionalBook.orElse(null);
-    }
+    List<Book> findBookByAuthor(String author);
 
-    private Book findBookByTitle(String title) {
-        Optional<Book> optionalBook = bookRepository.findByTitle(title);
-        return optionalBook.orElse(null);
-    }
+    Book findBookByIsbn(String isbn);
 
-    private List<Book> findBookByAuthor(String author) {
-        return bookRepository.findByAuthor(author);
-    }
+    Book saveBook(Book book);
 
-    private Book findBookByIsbn(String isbn) {
-        Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
-        return optionalBook.orElse(null);
-    }
-
-    private Book saveBook(Book book) {
-        return bookRepository.save(book);
-    }
-
-    private void removeBook(Long id) {
-        Optional<Book> bookOptional = bookRepository.findById(id);
-        bookOptional.ifPresent(bookRepository::delete);
-    }
+    void removeBook(Long id);
 }

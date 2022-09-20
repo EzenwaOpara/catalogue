@@ -1,7 +1,24 @@
 package com.eze.catalogue.service;
 
-import org.springframework.stereotype.Service;
+import com.eze.catalogue.domain.Movie;
 
-@Service
-public class MovieService {
+import java.util.List;
+
+public interface MovieService {
+
+    List<Movie> findAllMovies();
+
+    Movie findMovieById(Long id);
+
+    Movie findMovieByName(String name);
+
+    Movie findMovieByLanguage(String language);
+
+    Movie findMovieByType(String type);
+
+    Movie findMovieByRatingRange(double low, double high);
+
+    Movie saveMovie(Movie movie);
+
+    void removeMovie(Long id);
 }

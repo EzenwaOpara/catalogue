@@ -33,3 +33,10 @@ route:
 
   movie:
     findAllMovies: direct:findAllMovies
+    findMovieById: direct:findMovieById
+    findMovieByName: direct:findMovieByName
+    findMovieByLanguage: direct:findMovieByLanguage
+    findMovieByType: direct:findMovieByType
+    findMovieByRatingRange: direct:findMovieByRatingRange
+    saveMovie: direct:saveMovie
+    removeMovie: direct:removeMovie
