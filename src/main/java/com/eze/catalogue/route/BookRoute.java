@@ -15,7 +15,7 @@ public class BookRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        RestConfiguration restConfiguration = getContext().getRestConfiguration();
+//        RestConfiguration restConfiguration = getContext().getRestConfiguration();
 
         from("{{route.book.findAllBooks}}")
                 .bean(BookService.class, "findAllBooks");
@@ -28,11 +28,11 @@ public class BookRoute extends RouteBuilder {
                 .log("Received header : ${header.title}")
                 .bean(BookService.class, "findBookByTitle(${header.title})");
 
-        from("{{route.book.findBookAuthor}}")
+        from("{{route.book.findBookByAuthor}}")
                 .log("Received header : ${header.author}")
                 .bean(BookService.class, "findBookByAuthor(${header.author})");
 
-        from("{{route.book.findBookIsbn}}")
+        from("{{route.book.findBookByIsbn}}")
                 .log("Received header : ${header.isbn}")
                 .bean(BookService.class, "findBookByIsbn(${header.isbn})");
 
@@ -47,7 +47,7 @@ public class BookRoute extends RouteBuilder {
 
         from("direct:findBooks")
                 .doTry()
-                .bean(BookService.class, "findBooks")
+                .bean(BookService.class, "findAllBooks")
                 .doCatch(Exception.class)
                 .to("direct:exceptionHandler")
                 .end();

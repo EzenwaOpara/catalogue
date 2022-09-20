@@ -54,13 +54,13 @@ public class MainRoute extends RouteBuilder {
                 .responseMessage("200", "Book by author was found.")
                 .responseMessage("404", "Book by author was not found.")
                 .description("Find book by author")
-                .to("{{route.book.findBookAuthor}}")
+                .to("{{route.book.findBookByAuthor}}")
 
                 .get("/isbn/{isbn}")
                 .responseMessage("200", "Book with isbn was found.")
                 .responseMessage("404", "Book with isbn was not found.")
                 .description("Find book by isbn")
-                .to("{{route.book.findBookIsbn}}")
+                .to("{{route.book.findBookByIsbn}}")
 
                 .post("/")
                 .type(Book.class)
@@ -78,7 +78,7 @@ public class MainRoute extends RouteBuilder {
 
                 .get("/")
                 .responseMessage("200", "Books found.")
-                .responseMessage("404", "No books found.")
+                .responseMessage("404", "No books found")
                 .description("Find books with exception handler")
                 .to("direct:findBooks");
 
@@ -129,13 +129,13 @@ public class MainRoute extends RouteBuilder {
                 .responseMessage("200", "Create new movie was successful.")
                 .responseMessage("404", "Create new movie was not successful.")
                 .description("Save a new movie")
-                .to("{{route.book.saveMovie}}")
+                .to("{{route.movie.saveMovie}}")
 
                 .delete("/{movieId}")
                 .responseMessage("200", "Movie with id was found and deleted.")
                 .responseMessage("404", "Movie with id was not found.")
                 .description("Delete movie by id")
-                .to("{{route.book.removeMovie}}")
+                .to("{{route.movie.removeMovie}}")
                 .outType(GenericResponse.class);
 
     }

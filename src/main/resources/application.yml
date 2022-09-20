@@ -16,10 +16,13 @@ spring:
     properties:
       hibernate.temp.use_jdbc_metadata_defaults: true
   datasource:
-    url: ${DB_SERVER:jdbc:postgresql://localhost:5432/cataloguedb?useTimezone=true&serverTimezone=Africa/Lagos}
-    username: ${DB_USER:postgres}
-    password: password
-    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+    url: jdbc:postgresql://localhost:5432/cataloguedb?useTimezone=true&serverTimezone=Africa/Lagos
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
 
 route:
   book:
